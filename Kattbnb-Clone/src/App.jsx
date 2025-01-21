@@ -1,9 +1,20 @@
 import { useState } from 'react'
 import './App.css'
-import MainContent from './Components/MainContent'
 import Navbar from './Components/Navbar'
 import Hero from './Components/Hero'
 import Card from './Components/Card'
+import data from '../data.js'
+
+const cards=data.map(item=>{
+  return(
+    <Card 
+     key={item.id}
+     {...item}
+          />
+
+  )
+})
+
 
 function App() {
 
@@ -12,8 +23,9 @@ function App() {
     <div className='full'>
     <Navbar/>
     <Hero/>
-    <Card/>
-    <MainContent/>
+    <section className='cardsSec'>
+    {cards}
+    </section>
     </div>
 
   )

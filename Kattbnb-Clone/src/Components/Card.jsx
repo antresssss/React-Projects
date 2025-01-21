@@ -1,20 +1,33 @@
 import React from "react";
-import kati from "../assets/aktie.png";
 import star from "../assets/stra.png";
 
-export default function Card() {
-    return(
-    <div className="card">
-        <img src={kati} alt="a photo" className="photo"/>
-        <div className="cardStats">
-            <img src={star} className="star"/>
-            <span>5.0</span>
-            <span className="gray">(6) • </span>
-            <span className="gray">USA</span>
-        </div>
-        <h2 className="title">Life lessons with Katie </h2>
-        <p><span className="bold">From $136/person </span></p>
 
+export default function Card(props) {
+    let badgeText
+    if (props.openSpots === 0) {
+        badgeText = "SOLD OUT"
+    } else if (props.location === "Online") {
+        badgeText = "ONLINE"
+    }
+    return(
+        <div className="card">
+         {
+                badgeText && 
+                <div className="card--badge">{badgeText}</div>
+        }
+        <img 
+                src={`/src/assets/${props.coverImg}`} 
+                className="card--image" 
+                alt={props.title}/>
+       
+        <div className="card--stats">
+            <img src={star} className="card--star" />
+            <span>{props.rating}</span>
+            <span className="gray">({props.stats.reviewCount}) • </span>
+            <span className="gray">{props.country}</span>
+        </div>
+        <p>{props.title}</p>
+        <p><span className="bold">From ${props.price}</span> / person</p>
     </div>
 
 
